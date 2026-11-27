@@ -14,14 +14,14 @@ function Register() {
         resolver: zodResolver(registerschema)
     });
 
-    function onSubmit1(data) {
+    function onSubmitS(data) {
         console.log(data);
         alert("Register success");
         navigate("/");
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit1)}>
+        <form onSubmit={handleSubmit(onSubmitS)}>
 
             <input
                 type="text"
