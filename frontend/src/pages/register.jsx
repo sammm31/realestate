@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { registerschema } from "../components/registerschema";
+
 function Register() {
     const navigate = useNavigate();
 
@@ -17,43 +18,66 @@ function Register() {
     function onSubmitS(data) {
         console.log(data);
         alert("Register success");
-        navigate("/");
+        navigate("/", { state: data });
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmitS)}>
+        <div className="min-h-screen flex justify-center items-center bg-white">
 
-            <input
-                type="text"
-                placeholder="Enter your name"
-                {...register("name")}
-            />
-            <p>{errors.name?.message}</p>
+            <form
+                onSubmit={handleSubmit(onSubmitS)}
+                className="bg-yellow-100 w-96 p-8 rounded-lg shadow-lg space-y-5"
+            >
 
-            <input
-                type="email"
-                placeholder="Enter your email"
-                {...register("email")}
-            />
-            <p>{errors.email?.message}</p>
+                <div className="text-blue-500 text-center text-2xl font-bold">
+                    ESTATE CRM
+                </div>
 
-            <input
-                type="password"
-                placeholder="Enter your password"
-                {...register("password")}
-            />
-            <p>{errors.password?.message}</p>
+                <h1 className="text-gray-800 text-center text-xl font-semibold">
+                    CREATE ACCOUNT
+                </h1>
 
-            <input
-                type="number"
-                placeholder="Enter your age"
-                {...register("age")}
-            />
-            <p>{errors.age?.message}</p>
+                <input
+                    type="text"
+                    placeholder="Enter your name"
+                    {...register("name")}
+                    className="w-full p-3 border-2 border-black rounded-md"
+                />
+                <p className="text-red-500 text-sm">{errors.name?.message}</p>
 
-            <button type="submit">Submit</button>
+                <input
+                    type="email"
+                    placeholder="Enter your email"
+                    {...register("email")}
+                    className="w-full p-3 border-2 border-black rounded-md"
+                />
+                <p className="text-red-500 text-sm">{errors.email?.message}</p>
 
-        </form>
+                <input
+                    type="password"
+                    placeholder="Enter your password"
+                    {...register("password")}
+                    className="w-full p-3 border-2 border-black rounded-md"
+                />
+                <p className="text-red-500 text-sm">{errors.password?.message}</p>
+
+                <input
+                    type="number"
+                    placeholder="Enter your age"
+                    {...register("age")}
+                    className="w-full p-3 border-2 border-black rounded-md"
+                />
+                <p className="text-red-500 text-sm">{errors.age?.message}</p>
+
+                <button
+                    type="submit"
+                    className="w-full bg-blue-600 text-white p-3 rounded-md font-semibold hover:bg-blue-700"
+                >
+                    Register
+                </button>
+
+            </form>
+        </div>
     );
 }
 

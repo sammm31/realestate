@@ -1,17 +1,31 @@
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-
+    const location= useLocation();
+    const registerdata= location.state;
     const formsubmit = (e) => {
         e.preventDefault();
-        console.log({ email, password });
-        navigate("/dashboard");
-    };
+         const logindata = {
+            email: email,
+            password: password
+        };
+
+        console.log("login data",logindata)
+        console.log("register data",registerdata)
+   if (logindata.email=== registerdata.email && logindata.password === registerdata.password)
+    navigate("/dashboard",{
+      state:logindata
+    })
+    else{
+         alert("invalid data");
+    }
+    
+    }
 
     return (
         <div className="min-h-screen flex justify-center items-center bg-gray">
